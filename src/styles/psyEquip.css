@@ -1,0 +1,279 @@
+.coloreb{
+    color:#eb6100
+}
+.br10{
+    border-radius: 10px;
+}
+.w100{
+    width:100%;
+}
+.bgf{
+    background-color: #ffffff;
+}
+.fs14{
+    font-size: 14px;
+}
+.fs16{
+    font-size: 16px;
+}
+.fs18{
+    font-size: 18px;
+}
+.fs20{
+    font-size: 20px;
+}
+.fs22{
+    font-size: 22px;
+}
+.fs24{
+    font-size: 24px;
+}
+.fs26{
+    font-size: 26px;
+}
+.fs28{
+    font-size:28px;
+}
+.fs36{
+    font-size:36px;
+}
+.fs45{
+    font-size: 45px;
+}
+.mt10{
+    margin-top:10px;
+}
+.ml30{
+    margin-left:30px;
+}
+.mt20{
+    margin-top:20px;
+}
+.mt26{
+    margin-top:26px;
+}
+.mt35{
+    margin-top:35px;
+}
+.mb10{
+    margin-bottom: 10px;
+}
+.mb15{
+    margin-bottom: 15px;
+}
+.mb20{
+    margin-bottom: 20px;
+}
+.mb26{
+    margin-bottom: 26px;
+}
+.mb30{
+    margin-bottom: 30px;
+}
+.mb35{
+    margin-bottom: 35px;
+}
+.mb42{
+    margin-bottom: 42px;
+}
+.mb50{
+    margin-bottom: 50px;
+}
+.mb55{
+    margin-bottom: 55px;
+}
+.mb60{
+    margin-bottom:60px;
+}
+.mb70{
+    margin-bottom:70px;
+}
+.radiusLeft{
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+.radiusRight{
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+.mr10{
+    margin-right: 10px;
+}
+.mr20{
+    margin-right: 20px!important;
+}
+.mr30{
+    margin-right: 30px;
+}
+.mr35{
+    margin-right: 35px;
+}
+.mr50{
+    margin-right: 50px;
+}
+.mt28{
+    margin-top: 28px; 
+}
+.mt20{
+    margin-top:20px; 
+}
+.textCet{
+    text-align: center;
+    word-break: break-all;
+}
+.fs20{
+    font-size: 20px;
+}
+.fwb{
+    font-weight: bold;
+}
+.fwn{
+    font-weight:normal;
+}
+.borderdd{
+    border:1px solid #ddd
+}
+.color6{
+    color:#666666;
+}
+.colorBD{
+    color:#BDBDBD
+}
+.color65{
+    color:#656565;
+}
+.colorC3{
+    color:#C3C3C3
+}
+.color31{
+    color:#ff6631
+}
+.floatLeft{
+    float:left
+}
+.color9{
+    color:#999999;
+}
+.color3{
+    color:#333333;
+}
+.colorf{
+  color: #fff;
+}
+.colorBC{
+    color:#BCBCBC
+}
+.colorFF{
+    color:#00C4FF
+}
+.posit{
+    position: relative;
+}
+.cursorer{
+    cursor: pointer;
+}
+.cursorlt{
+    cursor: default;
+}
+.bg76{
+    background-color:#FFA276
+}
+
+.bgA4{
+    background-color:#15D2A4
+}
+.bg00{
+    background-color:#FF0000
+}
+.bgcolorff{
+    background-color: #c0eeff;
+}
+.bgcolorf{
+    background-color: #fff;
+}
+.bgcolora5{
+    background-color:#68c5a5;
+}
+
+.bgcolor79{
+    background-color:#d8db79;
+}
+.bgcolor5a{
+    background-color:#ffa25a;
+}
+.bgcolor21{
+    background-color:#f36421;
+}
+.color21{
+    color:#f36421;
+}
+.colorD{
+    color:#DDDDDD!important;
+}
+.color05{
+    color:#0A0205
+}
+.colorBF{
+    color:#BFBFBF
+}
+.color1FF{
+    color:#58D1FF
+}
+.bgcolorD5{
+    background-color:rgba(29, 71, 213, 0.34)
+}
+
+.w170{
+    width: 170px;
+}
+.w50{
+    width:50%
+}
+.h45{
+    height:45px;
+    margin-bottom:35px
+}
+.h100{
+    height: 100%;
+}
+.disflex{
+    display:flex;
+}
+.sapcearound{
+    justify-content: space-around;
+}
+.spacebetween{
+    justify-content: space-between;
+}
+.spaceevenly{
+    justify-content:space-evenly
+}
+.ivu-page-item-active{
+    border-color:#eb6100
+}
+.ivu-page-item-active a, .ivu-page-item-active:hover a{
+    color:#eb6100
+}
+.ivu-page-item:hover, .ivu-page-item:hover a{
+    border-color:#eb6100;
+    color:#eb6100;
+}
+.ivu-page-item-jump-prev a:hover i{
+    color:#eb6100;
+}
+.ivu-page-item-jump-next a:hover i{
+    color:#eb6100;
+}
+.ivu-page-next:hover{
+    border-color:#eb6100;
+}
+.ivu-page-next a:hover i{
+    color:#eb6100;
+}
+.ivu-page-prev a:hover i{
+    color:#eb6100;
+}
+.ivu-page-prev:hover{
+    border-color:#eb6100;
+}
+

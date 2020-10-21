@@ -1,0 +1,288 @@
+
+// 横线标题
+.base-title-line {
+    .span {
+        position: relative;
+        display: inline-block;
+        min-width: 100px;
+        background: #fff;
+        z-index: 1;
+        .pos {
+            position: absolute;
+            width: 160%;
+            height: 2px;
+            background: @base-color;
+            left: -30%;
+            top: 50%;
+            margin-top: -1px;
+        }
+        .text {
+            width: 100%;
+            padding: 0 10px;
+            position: relative;
+            background: #fff;
+        }
+    }
+}
+/*
+*  列表内容样式
+*/
+.base-content-list {
+    .h26 {
+        height: 26px;
+    }
+    .title {
+        overflow: hidden;
+        width: 100%;
+        font-size: 16px;
+        color: #343d4a;
+        // color: #333333; //颜色改变 lss
+        line-height: 25px;
+        font-weight: bold;
+        &.normal {
+            font-weight: normal;
+        }
+        &.h25 {
+            height: 25px;
+        }
+        &.h50 {
+            height: 50px;
+        }
+        &.color-base {
+            color: @base-color
+        }
+    }
+    .info {
+        color: #a5aaae;
+        // color: #666666;//颜色改变 lss
+        font-size: 14px;
+        line-height: 18px;
+        overflow: hidden;
+        &.h18 {
+            height: 18px;
+        }
+        &.h36 {
+            height: 36px;
+        }
+        &.h72 {
+            height: 72px;
+        }
+        &.lh25 {
+            line-height: 25px;
+        }
+        &.color-base {
+            color: #eb6100;
+        }
+        &.color-t {
+            color: #343d4a;
+        }
+    }
+    .date {
+        color:#343d4a;
+        line-height: 24px;
+    }
+    
+    .title, .info {
+        transition: all .2s ease-in;
+    }
+    
+    &.hover:hover {
+        .title, .info {
+            opacity: .8;
+        }
+    }
+    .content-text{
+        position: relative;
+    }
+    .time-read{
+        position: absolute;
+        bottom: 0;
+        left: 18px;
+        color: #a5aaae;
+        line-height: 22px;
+        .time{
+            padding-right: 30px;
+        }
+        .reading{
+            vertical-align: middle;
+            i{
+                margin-right: 4px;
+            }
+        }
+    }
+}
+// 右侧列表样式
+.base-right-card {
+    ul{
+        // padding: 10px 25px 23px;
+        // max-height: 525px;
+        overflow: hidden;
+        list-style:none ;
+        li{
+            cursor: pointer;
+            height: 34px;
+            line-height: 34px;
+            &.c-default {
+                cursor: default;
+            }
+            &.h28 {
+                height: 28px;
+                line-height: 28px;
+            }
+            &.h32 {
+                height: 32px;
+                line-height: 32px;
+            }
+        }
+    }
+}
+.card-pd0 .ivu-card-body {
+    padding: 0
+}
+// 文章小圆点
+.ivu-badge-status-dot  {
+    background: #343d4a;
+    margin: 0 4px;
+    &.bgGray {
+        background: #80878e
+    }
+}
+// 文章列表小标题
+.art-title .li{
+    display: inline-block;
+    margin-right: 23px;
+    cursor: pointer;
+}
+// 更多按钮
+.gray-btn {
+    background: #f5f5f5;
+    color: @base-color;
+    border-color: #f5f5f5;
+    width: 224px;
+    height: 40px;
+}
+// 页面 头部图片 1
+.list-img{
+    img{
+        width: 100%;
+        height: 100%;
+    }
+}
+// 右侧列表头部
+.right-title{
+    height: 44px;
+    padding-left: 20px;
+    line-height: 44px;
+    color: #fff;
+    font-size: 18px;
+}
+//左右分布 左侧
+.class-room{
+    margin-bottom: 10px;
+    // padding-bottom: 30px;
+    .nav-list{
+        color: #80878e;
+        ul{
+            li{
+                display: inline-block;
+                margin-right: 20px;
+            }
+            .active{
+                color:#343d4a
+            }
+        }
+    }
+}
+.base-top-title{
+    height: 63px;
+    line-height: 63px;
+    border-bottom: 1px solid #eaeaea;
+    padding-left: 26px;
+}
+// 面包导航 中间
+.bread-nav{
+    height: 48px;
+    line-height: 48px;
+    overflow: hidden;
+    border-radius: 5px;
+    .title{
+        min-width: 140px;
+        text-align: center;
+        line-height: 48px;
+        color: #eff2f7
+    }
+    span{
+        padding:0 10px;
+        border-right: 2px solid #80878e;
+        cursor: pointer;
+    }
+    span:last-child{
+        border-right: none
+    }
+    .classify{
+        display: inline-block;
+    }
+
+}
+
+// 标签
+.my-m-tag {
+    line-height: 20px;
+    background: #fdefe5;
+    border-color: #fdefe5;
+    .ivu-tag-text {
+        color: #eb6100;
+    }
+} 
+// 视频时间
+.show-video-time {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    padding: 3px 11px 3px 11px;
+    border-radius: 30px;
+    color: #fff;
+    background: rgba(0,0,0,.5);
+    line-height: 20px;
+    span, i {
+        vertical-align: middle;
+    }
+}
+// 百灵鸟
+
+.circle-bln {
+    position: absolute;
+    top:-38px;
+    left: 50%;
+    margin-left: -61px;
+    width: 122px;
+    height: 122px;
+    border-radius: 50%;
+    background: #fff;
+    text-align: center;
+    img{
+        width: 80%;
+        margin-top: 12px;
+    }
+}
+.art-list-popper {
+    // 气泡
+    &.ivu-poptip-popper {
+        position: relative
+    }
+    .ivu-poptip {
+        display: block;
+    }
+    .ivu-poptip-arrow {
+        left: 50%;
+        margin-left: -7px;
+        top: -6px;
+        border-width: 0 7px 7px;
+        border-bottom-color: #f5f5f5;
+    }
+    .ivu-poptip-inner {
+        background: #f5f5f5;
+        box-shadow: 0 0 0;
+        width: 100%
+    }
+}

@@ -1,0 +1,86 @@
+.dividing-rule{
+    margin-top: 58px;
+    position: relative;
+    .left-title{
+        width: 180px;
+        text-align: right;
+        padding-right: 10px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        &.w95 {
+            width: 95px
+        }
+        &.right {
+            right: 0;
+            left: auto;
+        }
+    }
+    .scale-pd{
+        padding-left: 190px;
+        &.scale-pdlr {
+            padding-left: 100px;
+            padding-right: 120px;
+        }
+    }
+    .gradient-box{
+        position: relative;
+        border-radius: 10px;
+        width: 100%;
+        height: 20px;
+        margin-bottom: 2px;
+        background: -o-linear-gradient(to right, #01ff00, #fffc00,#ff1313); /* Opera 11.1 - 12.0 */
+        background: -moz-linear-gradient(to right, #01ff00, #fffc00,#ff1313); /* Firefox 3.6 - 15 */
+        background: linear-gradient(to right, #01ff00, #fffc00,#ff1313); /* 标准的语法（必须放在最后） */
+        background: -webkit-linear-gradient(to right, #01ff00, #fffc00,#ff1313); /* Safari 5.1 - 6.0 */
+        &.reSet {
+            background: -o-linear-gradient(to right, #ff1313, #fffc00,#01ff00); /* Opera 11.1 - 12.0 */
+            background: -moz-linear-gradient(to right, #ff1313, #fffc00,#01ff00); /* Firefox 3.6 - 15 */
+            background: linear-gradient(to right, #ff1313, #fffc00,#01ff00); /* 标准的语法（必须放在最后） */
+            background: -webkit-linear-gradient(to right, #ff1313, #fffc00,#01ff00); /* Safari 5.1 - 6.0 */
+        }
+        &.reSeted {
+            background: -o-linear-gradient(to right, #ff1313, #fffc00,#01ff00, #fffc00, #ff1313); /* Opera 11.1 - 12.0 */
+            background: -moz-linear-gradient(to right, #ff1313, #fffc00,#01ff00, #fffc00, #ff1313); /* Firefox 3.6 - 15 */
+            background: linear-gradient(to right, #ff1313, #fffc00,#01ff00, #fffc00, #ff1313); /* 标准的语法（必须放在最后） */
+            background: -webkit-linear-gradient(to right, #ff1313, #fffc00,#01ff00, #fffc00, #ff1313); /* Safari 5.1 - 6.0 */
+        }
+
+        .zb-img{
+            width: 16px;
+            position: absolute;
+            top: -28px;
+            transform:translateX(-50%);
+        }
+        .scale-line{
+            display: inline-block;
+            width: 20%;
+            // height: 20px;
+            vertical-align: top;
+            // line-height: 21px;
+            text-align: center;
+            box-sizing: border-box;
+            border-right: 1px solid rgba(0, 0, 0, 0.5);
+            font-size: 13px;
+            &.w10 {
+                width: 10%;
+            }
+            &.w30 {
+                width: 30%;
+            }
+            &.w40 {
+                width: 40%;
+            }
+            &.w50 {
+                width: 50%;
+            }
+            &.w60 {
+                width: 60%;
+            }
+
+        }
+        .scale-line:last-child{
+            border: 0
+        }
+    }
+}

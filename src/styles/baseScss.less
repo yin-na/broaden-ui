@@ -1,0 +1,353 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: SourceHanSansCN-Light, Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif!important;
+    font-size: 14px;
+    background: #f9f9f9;
+    color: #343d4a;
+    min-width: 920px;
+}
+a {
+    color: #343d4a;
+}
+a:hover, 
+.ivu-tabs-nav .ivu-tabs-tab:hover {
+
+    color: @base-color;
+}
+li {
+    list-style: none;
+}
+/*
+*  版心宽度  1203
+*/ 
+body, .inner {
+    min-width: 1100px;
+}
+.inner {
+    max-width: 1200px;
+    min-height: 100%;
+    margin: 0 auto;
+    width: 100%;
+}
+.inner-main {
+    width: calc(100% + 2px)
+}
+/*
+* 浮动
+*/ 
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+}
+.clearfix:before,.clearfix:after{
+	display:table;
+	content:"";
+}
+.clearfix:after{
+	clear:both;
+}
+/*
+*  小手
+*/
+.cursor-p {
+    cursor: pointer;
+}
+/*
+* 竖线
+*/
+.v-line {
+    display: inline-block;
+    height: 20px;
+    width: 3px;
+    background: @base-color;
+}
+/*
+* 横线
+*/
+.h-line {
+    display: inline-block;
+    height: 2px;
+    width: 100%;
+    background: @base-color;
+}
+/*
+* 字体颜色
+*/
+.color-base {
+    color: #eb6100;
+}
+.color-g {
+    color: #343d4a;
+}
+/*
+* 背景颜色
+*/
+.bg-base {
+    background: @base-color;
+}
+.text-white{
+    color: #fff;
+}
+.bg-gray {
+    background: #f5f5f5
+}
+.bg-dgray {
+    background: #e5e5e5
+}
+
+/*
+*  字体居中
+*/
+.text-center {
+    text-align: center;
+}
+.text-right {
+    text-align: right;
+}
+.text-left {
+    text-align: left;
+}
+.text-vam {
+    vertical-align: middle;
+}
+.algin-center {
+    display: flex;
+    align-items: center;
+}
+/*
+*  字体
+*/
+.fs13 {
+    font-size: 13px;
+}
+.fs14 {
+    font-size: 14px;
+}
+.fs16 {
+    font-size: 16px;
+}
+.fs18 {
+    font-size: 18px;
+}
+.fs20 {
+    font-size: 20px;
+}
+.fs22 {
+    font-size: 22px;
+}
+/*
+*  行高
+*/
+.lh16 {
+    line-height: 16px;
+}
+.lh20 {
+    line-height: 20px;
+}
+.lh25 {
+    line-height: 25px;
+}
+.lh30 {
+    line-height: 30px;
+}
+.lh60 {
+    line-height: 60px;
+}
+/*
+*  高度
+*/
+.maxh52 {
+    max-height: 52px
+}
+.maxh26 {
+    max-height: 26px
+}
+.maxh220{
+    max-height: 220px;
+}
+.maxw58{
+    max-width: 58px;
+}
+/*
+*  宽度
+*/
+.w80 {
+    width: 80px;
+}
+.w100b {
+    width: 100%;
+}
+.h25 {
+    height: 25px;
+}
+.h80 {
+    height: 80px;
+}
+/*
+*  margin 外间距
+*/
+.mgr5 {
+    margin-right: 5px;
+}
+.mgr10 {
+    margin-right: 10px;
+}
+.mgr15 {
+    margin-right: 15px;
+}
+.mgr20 {
+    margin-right: 20px;
+}
+.mgl10 {
+    margin-left: 10px;
+}
+.mgl20{
+    margin-left: 20px;
+}
+.mgt2 {
+    margin-top: 2px;
+}
+.mgt5 {
+    margin-top: 5px;
+}
+.mgt10 {
+    margin-top: 10px;
+}
+.mgt15 {
+    margin-top: 15px;
+}
+.mgt20 {
+    margin-top: 20px!important;
+}
+.mgt30 {
+    margin-top: 30px;
+}
+.mgt38 {
+    margin-top: 38px;
+}
+.mgt40 {
+    margin-top: 40px;
+}
+.mgt88 {
+    margin-top: 88px;
+}
+.mgt25d {
+    margin-top: -25px;
+}
+.mgt38d {
+    margin-top: -38px;
+}
+.mgb20 {
+    margin-bottom: 20px;
+}
+.mgb10{
+    margin-bottom: 10px;
+}
+.mgb40 {
+    margin-bottom: 40px;
+}
+/*
+*  padding 内间距
+*/
+.pd0{
+    padding: 0 !important;
+}
+.pd20{
+    padding: 20px;
+}
+.pdt5 {
+    padding-top: 5px;
+}
+.pdt10 {
+    padding-top: 10px;
+}
+.pdt20 {
+    padding-top: 20px;
+}
+.pdb20 {
+    padding-bottom: 20px;
+}
+.pdb40 {
+    padding-bottom: 40px;
+}
+.pdl20 {
+    padding-left: 20px;
+}
+.pdl60 {
+    padding-left: 60px;
+}
+.pdr20 {
+    padding-right: 20px;
+}
+.pdlr20{
+    padding-left:20px;
+    padding-right:20px;
+}
+.pdtb10{
+    padding-top:10px;
+    padding-bottom:10px;
+}
+/*
+*  溢出隐藏
+*/
+.hide {
+    overflow: hidden;
+}
+.hideImg {
+    img {
+        display: none;
+    }
+}
+.ellipsisHide(@n) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;  
+    -webkit-line-clamp: @n;
+    -webkit-box-orient: vertical;
+}
+.overflow-table-one {
+    overflow: visible;
+    .ivu-tooltip-rel{
+        .ellipsisHide(1);
+    }
+}
+// 超出一行隐藏
+.overflow-hidden {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+// 超出2行隐藏
+.hide-ellipsis {
+    .ellipsisHide(2);
+}
+// 超出3行隐藏
+.hide-ellipsis-t {
+    .ellipsisHide(3);
+}
+// 超出4行隐藏
+.hide-ellipsis-f {
+    .ellipsisHide(4);
+}
+/*
+*  card圆角
+*/
+.inner .ivu-card {
+    border-radius: 10px;
+}
+.inner .bread-nav{
+    border-radius: 5px;
+}
+// 页码样式
+.pages{
+    margin-top: 40px;
+    text-align: center
+}
+
+@import './artList.less';
+@import './video.less';
+@import './rightList.less';

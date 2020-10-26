@@ -20,10 +20,6 @@ export function parseTime (time) {
     return ''
   }
 }
-// 体检咨询师端问卷
-export function isNumberStr (str) {
-  return /^[+-]?(0|([1-9]\d*))(\.\d+)?$/g.test(str)
-}
 export function parseDate (time) {
   if (time) {
     var date = new Date(time)
@@ -37,21 +33,6 @@ export function parseDate (time) {
     return year + '-' + month + '-' + day
   } else {
     return ''
-  }
-}
-
-export default {
-  debounce(fn, delay = 500) {   //默认300毫秒
-      var timer;
-      return function() {
-          var args = arguments;
-          if(timer) {
-              clearTimeout(timer);
-          }
-          timer = setTimeout(() => {
-              fn.apply(this, args);   // this 指向vue
-          }, delay);
-      };
   }
 }
 
@@ -173,7 +154,7 @@ export function addClass (ele, cls) {
 }
 
 /**
- * Remove class form element
+ * Remove class from element
  * @param {HTMLElement} elm
  * @param {string} cls
  */

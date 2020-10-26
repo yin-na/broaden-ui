@@ -2,24 +2,21 @@
   <div class="app-container">
     <el-row :gutter="10">
       <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-        <el-card class="box-card" style="border: none;box-shadow: none">
-            <div class="contain-tit">
-                <span>字典列表</span>
-            </div>
+        <el-card class="box-card">
+          <div slot="header" class="clearfix" style="height:10px;">
+            <span>字典列表</span>
+          </div>
           <div class="head-container">
-            <el-input v-model="params.dictCode" class="filter-item" style="width: 150px;margin-right:8px" clearable  placeholder="字典编码" @keyup.enter.native="handleQuery"/>
-            <el-input v-model="params.dictName" class="filter-item" style="width: 150px;margin-right:8px" clearable placeholder="字典名称" @keyup.enter.native="handleQuery"/>
+            <el-input v-model="params.dictCode" class="filter-item" style="width: 150px;" clearable  placeholder="字典编码" @keyup.enter.native="handleQuery"/>
+            <el-input v-model="params.name" class="filter-item" style="width: 150px;" clearable placeholder="字典名称" @keyup.enter.native="handleQuery"/>
             <el-button size="mini" type="primary" icon="el-icon-search" @click="handleQuery">搜索</el-button>
             <el-button v-permission="['system:dict:add']" size="mini"
               type="success" icon="el-icon-plus" @click="handleCreate">新增</el-button>
           </div>
           <!--表格渲染-->
-          <el-table v-loading="loading" :data="data" size="mini" :height="tableHeight"
-                    :header-cell-style="{fontSize:'14px',height:'35px',lineHeight:'35px',}"
-                    :row-style="{height:'35px',lineHeight:'35px',fontSize:'14px'}"
-                    highlight-current-row style="width: 100%;" @current-change="handleCurrentChange" border>
+          <el-table v-loading="loading" :data="data" size="mini" :height="tableHeight" highlight-current-row style="width: 100%;" @current-change="handleCurrentChange" border>
             <el-table-column show-overflow-tooltip prop="dictCode" header-align="center" label="字典编码"/>
-            <el-table-column show-overflow-tooltip header-align="center"  prop="dictName" label="字典名称"/>
+            <el-table-column show-overflow-tooltip header-align="center"  prop="name" label="字典名称"/>
             <el-table-column show-overflow-tooltip header-align="center"  prop="remark" label="备注"/>
             <el-table-column  label="操作" width="90px" align="center">
               <template slot-scope="scope">
@@ -36,15 +33,15 @@
             </el-table-column>
           </el-table>
           <!--分页组件-->
-          <el-pagination :total="total" :current-page.sync="page" style="margin-top: 8px;" layout="total, prev, pager, next, sizes"
+          <el-pagination :total="total" style="margin-top: 8px;" layout="total, prev, pager, next, sizes"
             @size-change="sizeChange" @current-change="pageChange"/>
         </el-card>
       </el-col>
       <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-        <el-card class="box-card" style="border: none;box-shadow: none">
-            <div class="contain-tit">
-                <span>字典详情</span>
-            </div>
+        <el-card class="box-card">
+          <div slot="header" class="clearfix" style="height:10px;">
+            <span>字典详情</span>
+          </div>
           <dict-detail ref="dictDetail" :dictCode="dictCode" />
         </el-card>
       </el-col>
@@ -103,6 +100,8 @@ export default {
       this.$refs.dictForm.handleInitData(id)
     },
     handleDelete (row) {
+      // eslint-disable-next-line no-debugger
+      debugger
       this.$confirm('此操作将永久删除, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
@@ -120,6 +119,7 @@ export default {
           })
         }).catch(err => {
           this.delLoading = false
+          console.log(err.response.data.message)
         })
       }).catch(() => {
         this.$notify({
@@ -142,12 +142,5 @@ export default {
 </script>
 
 <style scoped>
-  .contain-tit{
-    line-height: 59px;
-    height: 59px;
-    color: #333;
-    font-size: 18px;
-    border-bottom: 2px solid #D5E1FF;
-    font-weight: bold;
-  }
+
 </style>

@@ -9,18 +9,12 @@ const getters = {
   user: state => state.user.user,
   loadMenus: state => state.user.loadMenus,
   permission_routers: state => state.permission.routers,
-  permission_arch_routers:state => state.permission.archrouters,
   addRouters: state => state.permission.addRouters,
   socketApi: state => state.api.socketApi,
   imagesUploadApi: state => state.api.imagesUploadApi,
   updateAvatarApi: state => state.api.updateAvatarApi,
   qiNiuUploadApi: state => state.api.qiNiuUploadApi,
   sqlApi: state => state.api.sqlApi,
-  swaggerApi: state => state.api.swaggerApi,
-  dynamicModuleDat:state => state.user.dynamicModuleDat,
-  gotoUrl:state => state.user.gotoUrl,
-  qq:state => state.user.qq,
-  maintain:state =>state.user.maintain,
-  artTitle:state => state.artList.artTitle,
+  swaggerApi: state => state.api.swaggerApi
 }
 export default getters

@@ -52,22 +52,6 @@ export function updatePass (password) {
   })
 }
 
-export function updatePassWord (data) {
-  return request({
-    url: 'api/core/user/updatePassWord',
-    method: 'post',
-    data
-  })
-}
-
-export function updateAvatar(params) {
-  return request({
-    url: 'api/core/user/updateAvatar',
-    method: 'get',
-    params
-  })
-}
-
 export function updateEmail (code, data) {
   return request({
     url: 'api/core/user/updateEmail/' + code,
@@ -88,27 +72,5 @@ export function updateUserStatus (data) {
     url: 'api/core/user/updateUserStatus',
     method: 'put',
     data
-  })
-}
-
-export function updateUserInfo (data) {
-  return request({
-    url: 'api/core/user/updateUserInfo',
-    method: 'post',
-    data
-  })
-}
-// 查询机构信息
-export function getDeptInfo () {
-  return request({
-    url: 'api/core/user/getDeptInfo',
-    method: 'get',
-  })
-}
-// 重置密码
-export function resetPassword(userid) {
-  return request({
-    url: 'api/core/user/resetPassword/'+userid,
-    method: 'get',
   })
 }

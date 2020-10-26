@@ -8,7 +8,7 @@ const settings = {
     tagsView: Config.tagsView,
     fixedHeader: Config.fixedHeader,
     sidebarLogo: Config.sidebarLogo,
-    theme:'#409EFF',
+    theme: variables.theme,
     settingBtn: Config.settingBtn,
     uniqueOpened: Config.uniqueOpened,
     webName: undefined

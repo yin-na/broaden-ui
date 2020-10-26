@@ -1,43 +1,25 @@
-<!-- 主页内容 -->
 <template>
   <div class="app-container">
-    <div class="contain-tit">
-      <span>角色管理</span>
-    </div>
     <div class="head-container">
-      <el-input v-model.trim="params.roleCode" placeholder="请输入角色编码" size="mini" style="width: 150px;margin-right:8px" clearable class="filter-item"/>
-      <el-input v-model.trim="params.roleName" placeholder="请输入角色名称"  style="width: 150px;margin-right:8px" clearable class="filter-item"/>
-      <!-- <el-select v-model="params.status" placeholder="请选择角色状态" clearable style="width: 150px;margin-right:8px"  class="filter-item">
+      <el-input v-model="params.roleCode" placeholder="请输入角色编码" size="mini" style="width: 150px;" clearable class="filter-item"/>
+      <el-input v-model="params.roleName" placeholder="请输入角色名称"  style="width: 150px;" clearable class="filter-item"/>
+      <el-select v-model="params.status" placeholder="请选择角色状态" clearable style="width: 150px;"  class="filter-item">
         <el-option v-for="item in statusOptions" :key="item.id" :label="item.label" :value="item.value"/>
-      </el-select> -->
+      </el-select>
       <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
-      <el-button type="success" icon="el-icon-plus" size="mini"   @click="handleCreate">新增</el-button>
+      <el-button type="success" icon="el-icon-plus" size="mini" v-permission="['system:role:add']"  @click="handleCreate">新增</el-button>
       <el-button type="button" icon="el-icon-refresh" size="mini" @click="handleReset">重置</el-button>
       <role-form ref="roleForm" :operate="operate" :menuTrees="menus"/>
       <scope-form ref="scopeForm" :dataScopeOptions="dataScopeOptions"/>
     </div>
-    <el-table v-loading="loading" :data="data" size="mini" :height="tableHeight"
-              :header-cell-style="{fontSize:'14px',height:'35px'}"
-              :row-style="{height:'35px',lineHeight:'35px',fontSize:'14px'}"
-              highlight-current-row style="width: 100%;" border fit>
+    <el-table v-loading="loading" :data="data" size="mini" :height="tableHeight" highlight-current-row style="width: 100%;" border fit>
       <el-table-column prop="roleCode" label="角色编码" align="center"/>
       <el-table-column prop="roleName" label="角色名称" align="center"/>
-      <!-- <el-table-column prop="showType" label="显示位置" align="center">
-        <template slot-scope="scope">
-          <span v-if="scope.row.showType=='0'">机构管理员</span>
-          <span v-if="scope.row.showType=='1'">普通用户管理</span>
-        </template>
-      </el-table-column> -->
-         <el-table-column prop="roleType" label="所属系统" align="center">
-        <template slot-scope="scope">
-          <span>{{filterRoleType(scope.row.roleType)}}</span>
-        </template>
-      </el-table-column>
-      <!-- <el-table-column prop="status" label="角色状态" align="center">
+      <el-table-column prop="status" label="角色状态" align="center">
         <template slot-scope="scope">
           <el-switch v-model="scope.row.status" active-value="0" inactive-value="1" @change="handleStatusChange(scope.row)"/>
         </template>
-      </el-table-column> -->
+      </el-table-column>
       <el-table-column prop="sort" label="显示顺序" align="center"/>
       <el-table-column prop="crtTime" label="创建时间" align="center">
         <template slot-scope="scope">
@@ -49,20 +31,18 @@
           <el-button slot="reference" type="text"  size="mini" @click="handleView(scope.row.roleId)">
             <i class="el-icon-view" title="查看"/>
           </el-button>
-          <el-button slot="reference" type="text" size="mini"   @click="handleUpdate(scope.row.roleId)">
+          <el-button slot="reference" type="text" size="mini" :disabled="scope.row.roleCode==='admin'" v-permission="['system:role:edit']" @click="handleUpdate(scope.row.roleId)">
             <i class="el-icon-edit" style="color:green"  title="编辑"/>
           </el-button>
-          <el-button slot="reference"  type="text" size="mini" :disabled="scope.row.roleCode==='admin'" @click="handleDelete(scope.row.roleId)">
+          <el-button slot="reference"  type="text" size="mini" :disabled="scope.row.roleCode==='admin'" v-permission="['system:role:remove']" @click="handleDelete(scope.row.roleId)">
             <i class="el-icon-delete" style="color:red"  title="删除"/>
           </el-button>
-          <el-button slot="reference"  type="text" size="mini" :disabled="scope.row.roleCode==='admin'"  @click="handleDataScope(scope.row.roleId)">
+          <el-button slot="reference"  type="text" size="mini" v-permission="['system:role:edit']" @click="handleDataScope(scope.row.roleId)">
             <i class="el-icon-guide" style="color:orange"  title="数据权限" />
           </el-button>
         </template>
       </el-table-column>
     </el-table>
-     <!--分页组件-->
-        <el-pagination :total="total" :page-size="10" style="margin-top: 8px;" layout="total, prev, pager, next, sizes" @size-change="sizeChange" @current-change="pageChange" />
   </div>
 </template>
 
@@ -84,17 +64,9 @@ export default {
     return {
       delLoading: false,
       statusOptions: [],
-      roleTypes:[],
       menus: [],
       operate: '',
-      dataScopeOptions: [],
-      params:{
-        roleCode:"",
-        roleName:"",
-        status:"",
-        roleType:""
-      }
-
+      dataScopeOptions: []
     }
   },
   created () {
@@ -104,41 +76,15 @@ export default {
     get('sys_data_scope').then(response => {
       this.dataScopeOptions = response.data.data
     })
-     get('sys_role_type').then(response => {
-      this.roleTypes = response.data.data
-    })
     this.$nextTick(() => {
       this.init()
       this.getMenus()
     })
   },
-  computed:{
-    filterRoleType(){
-      return function(val){
-        let that=this;
-      if (!val){
-         return ''
-      }else{
-      let type= that.roleTypes.filter(a=>a.value==val)
-        return type[0].label
-      }
-      }
-    }
-
-  },
   methods: {
     parseTime,
     checkPermission,
     beforeInit () {
-      if(this.$route.path=="/edu/role"){
-        this.params.roleType="1"
-      }
-   if(this.$route.path=="/community/role"){
-        this.params.roleType="3"
-    }
-      if(this.$route.path=="/nhc/role"){
-        this.params.roleType="4"
-    }
       this.url = 'api/core/role/page'
       return true
     },
@@ -147,19 +93,9 @@ export default {
       this.init()
     },
     handleReset () {
-      if(this.$route.path=="/edu/role"){
-        this.params.roleType="1"
-      }
-         if(this.$route.path=="/community/role"){
-        this.params.roleType="3"
-    }
-    if(this.$route.path=="/nhc/role"){
-        this.params.roleType="4"
-    }
       this.params.roleCode = undefined
       this.params.roleName = undefined
       this.params.status = undefined
-      this.handleQuery()
     },
     handleCreate () {
       this.operate = 'create'
@@ -185,16 +121,14 @@ export default {
         del(roleId).then(res => {
           this.delLoading = false
           this.init()
-          if(res.status==200){
           this.$notify({
             title: '删除成功',
             type: 'success',
             duration: 2500
           })
-          }
-         
         }).catch(err => {
           this.delLoading = false
+          console.log(err.response.data.message)
         })
       }).catch(() => {
         this.$notify({
@@ -241,6 +175,7 @@ export default {
       }).catch(err => {
         this.delLoading = false
         this.$refs[id].doClose()
+        console.log(err.response.data.message)
       })
     },
     getMenus () {
@@ -256,13 +191,5 @@ export default {
   .role-span {
     font-weight: bold;color: #303133;
     font-size: 15px;
-  }
-  .contain-tit{
-    line-height: 59px;
-    height: 59px;
-    color: #333;
-    font-size: 18px;
-    border-bottom: 2px solid #D5E1FF;
-    font-weight: bold;
   }
 </style>

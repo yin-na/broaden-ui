@@ -1,21 +1,15 @@
 <template>
   <div class="app-container">
-    <div class="contain-tit">
-      <span>菜单管理</span>
-    </div>
     <div class="head-container">
     <!-- 搜索 -->
-      <el-input v-model="params.menuName" clearable placeholder="输入名称搜索" style="width: 200px;margin-right:7px" class="filter-item" @keyup.enter.native="handleQuery"/>
+      <el-input v-model="params.menuName" clearable placeholder="输入名称搜索" style="width: 200px;" class="filter-item" @keyup.enter.native="handleQuery"/>
       <el-button size="mini" type="primary" icon="el-icon-search" @click="handleQuery">搜索</el-button>
       <el-button size="mini" type="success" v-permission="['system:menu:add']" icon="el-icon-plus" @click="handleCreate">新增</el-button>
       <el-button size="mini" type="warning" icon="el-icon-more"  @click="handExpand">{{ expand ? '折叠' : '展开' }}</el-button>
       <menu-form ref="menuForm" :operate="operate" :menuTypeOptions="menuTypeOptions"/>
     </div>
     <!--表格渲染-->
-    <tree-table v-loading="loading" :data="data" :expand-all="expand" :columns="columns"
-                :header-cell-style="{fontSize:'14px',height:'35px',lineHeight:'35px',}"
-                :row-style="{height:'35px',lineHeight:'35px',fontSize:'14px'}"
-                size="mini" border>
+    <tree-table v-loading="loading" :data="data" :expand-all="expand" :columns="columns" size="mini" border>
       <el-table-column prop="icon" label="图标" align="center" width="60px">
         <template slot-scope="scope">
           <svg-icon :icon-class="scope.row.icon?scope.row.icon:''" />
@@ -34,7 +28,7 @@
         </template>
       </el-table-column>
       <el-table-column prop="permission" label="权限标识" header-align="center" show-overflow-tooltip/>
-      <el-table-column prop="iframe" width="100px" label="内部菜单" align="center">
+      <el-table-column prop="iframe" width="70px" label="内部菜单" align="center">
         <template slot-scope="scope">
           <span v-if="!scope.row.iframe">是</span>
           <span v-else>否</span>
@@ -45,7 +39,7 @@
           <span>{{ parseTime(scope.row.crtTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column v-if="checkPermission(['adminxyl'])" label="操作" width="90px" align="center">
+      <el-table-column v-if="checkPermission(['adminyss'])" label="操作" width="90px" align="center">
         <template slot-scope="scope">
           <el-button slot="reference" type="text" size="mini" @click="handleView(scope.row.menuId)">
             <i class="el-icon-view" title="查看"/>
@@ -162,6 +156,7 @@ export default {
           })
         }).catch(err => {
           this.delLoading = false
+          console.log(err.response.data.message)
         })
       }).catch(() => {
         this.$notify({
@@ -176,12 +171,5 @@ export default {
 </script>
 
 <style scoped>
-  .contain-tit{
-    line-height: 59px;
-    height: 59px;
-    color: #333;
-    font-size: 18px;
-    border-bottom: 2px solid #D5E1FF;
-    font-weight: bold;
-  }
+
 </style>

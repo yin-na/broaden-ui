@@ -1,6 +1,9 @@
 import request from '@/utils/request'
 
 export function add (data) {
+  console.log(data)
+  // eslint-disable-next-line no-debugger
+  debugger
   return request({
     url: 'api/core/dict/create',
     method: 'post',

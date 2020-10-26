@@ -9,8 +9,8 @@ import {
   getToken
 } from '@/utils/auth'
 import Config from '@/config'
-//const baseURL = process.env.NODE_ENV === 'production' ? process.env.BASE_URL : Config.baseUrl.dev
-const baseURL = process.env.NODE_ENV === 'production' ? Config.baseUrl.prod : Config.baseUrl.dev
+const baseURL = process.env.NODE_ENV === 'production' ? process.env.BASE_URL : Config.baseUrl.dev
+
 // 创建axios实例
 const service = axios.create({
   baseURL: baseURL, // api 的 base_url
@@ -29,6 +29,7 @@ service.interceptors.request.use(
   },
   error => {
     // Do something with request error
+    console.log(error) // for debug
     Promise.reject(error)
   }
 )
@@ -42,7 +43,7 @@ service.interceptors.response.use(
         title: response.data.message
       })
       // eslint-disable-next-line prefer-promise-reject-errors
-      return response.data
+      return Promise.reject('error')
     } else {
       return response.data
     }

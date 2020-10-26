@@ -45,14 +45,6 @@ export function roleTree (params) {
   })
 }
 
-export function sysRoleList (params) {
-  return request({
-    url: 'api/core/role/sysRoleList',
-    method: 'get',
-    params
-  })
-}
-
 export function updateRoleStatus (data) {
   return request({
     url: 'api/core/role/updateRoleStatus',

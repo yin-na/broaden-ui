@@ -1,31 +1,21 @@
 <template>
-  <el-dialog append-to-body :visible.sync="dialog" :close-on-click-modal="false"	 :title="titleMap[operate]" width="500px" @close="cancel">
+  <el-dialog append-to-body :visible.sync="dialog" :title="titleMap[operate]" width="500px" @close="cancel">
     <el-form ref="form" :model="form" :rules="rules" size="small" label-width="80px">
-      <el-form-item label="机构名称" prop="deptName">
+      <el-form-item label="部门名称" prop="deptName">
         <el-input v-model="form.deptName" :disabled="operate==='view'" style="width: 370px;"/>
       </el-form-item>
-      <el-form-item label="机构编码" prop="deptCode">
+      <el-form-item label="部门编码" prop="deptCode">
         <el-input v-model="form.deptCode" :disabled="operate==='view'" style="width: 370px;"/>
       </el-form-item>
       <el-form-item v-if="form.parentId !== 0" label="状态" prop="enabled">
         <el-radio v-for="item in statusOptions" :key="item.id" v-model="form.status" :disabled="operate==='view'" :label="item.value">{{ item.label }}</el-radio>
       </el-form-item>
-      <el-form-item label="机构排序" prop="sort">
+      <el-form-item label="部门排序" prop="sort">
         <el-input-number v-model.number="form.sort" :min="0" :max="999" :disabled="operate==='view'" controls-position="right" style="width: 370px;"/>
       </el-form-item>
-      <el-form-item  label="机构类型" prop="deptType">
-        <el-select v-model="form.deptType"   placeholder="请选择机构类型" style="width: 370px;" :disabled="operate==='view'" clearable>
-          <el-option v-for="type in deptTypes" :key="type.id" :label="type.name" :value="type.deptType"/>
-        </el-select>
-      </el-form-item>
-       <el-form-item  label="教育学制" v-if="form.deptType==3||form.deptType==4 || form.deptType==5" prop="mechanism">
-        <el-select v-model="form.mechanism"   placeholder="请选择教育学制" style="width: 370px;" :disabled="operate==='view'" clearable>
-          <el-option v-for="etype in educationalTypes" :key="etype.id" :label="etype.label" :value="etype.value"/>
-        </el-select>
-      </el-form-item>
-      <!-- <el-form-item v-if="roles.includes('admin')" style="margin-bottom: 0px;" label="上级部门">
+      <el-form-item v-if="form.parentId !== 0" style="margin-bottom: 0px;" label="上级部门">
         <treeselect v-model="form.parentId" :options="depts" style="width: 370px;" :disabled="operate==='view'" placeholder="选择上级部门" />
-      </el-form-item> -->
+      </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
       <el-button type="button" @click="cancel">取消</el-button>
@@ -35,11 +25,7 @@
 </template>
 
 <script>
- import { mapGetters } from 'vuex'
-
 import { add, edit, tree, getById } from '@/api/base/dept'
-import { get } from '@/api/base/dictDetail'
-import {getDeptTypeByRoleCode} from '@/api/base/dept'
 import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 export default {
@@ -59,15 +45,11 @@ export default {
       loading: false,
       dialog: false,
       depts: [],
-      deptTypes:[],
-      educationalTypes:[],
       form: {
         deptId: undefined,
         deptCode: undefined,
         deptName: undefined,
-        parentId: null,
-        deptType:null,
-        mechanism:null,
+        parentId: 1,
         status: '0',
         sort: '999'
       },
@@ -77,12 +59,6 @@ export default {
         ],
         sort: [
           { required: true, message: '请输入排序', trigger: 'blur', type: 'number' }
-        ],
-        deptType:[
-           { required: true, message: '请选择部门类型', trigger: 'change' }
-        ],
-        mechanism:[
-           { required: true, message: '请选择教育学制', trigger: 'change' }
         ]
       },
       titleMap: {
@@ -92,15 +68,8 @@ export default {
       }
     }
   },
-   computed: {
-    ...mapGetters([
-     ["roles"]
-    ]),
-  },
   created () {
     this.getDeptTree()
-    this.getDeptTypes()
-    this.getEnducationalSystem()
   },
   methods: {
     handleInitData (id) {
@@ -138,9 +107,9 @@ export default {
         })
         this.loading = false
         this.$parent.handleQuery()
-         this.getDeptTree()
       }).catch(err => {
         this.loading = false
+        console.log(err.response.data.message)
       })
     },
     handleUpdate () {
@@ -153,9 +122,9 @@ export default {
         })
         this.loading = false
         this.$parent.handleQuery()
-         this.getDeptTree()
       }).catch(err => {
         this.loading = false
+        console.log(err.response.data.message)
       })
     },
     resetForm () {
@@ -165,27 +134,14 @@ export default {
         deptId: undefined,
         deptCode: undefined,
         deptName: undefined,
-        parentId: null,
+        parentId: 1,
         status: '0',
         sort: '999'
       }
     },
-    // 获取机构树
     getDeptTree () {
       tree({ }).then(res => {
         this.depts = res.data
-      })
-    },
-    // 获取机构类型
-    getDeptTypes () {
-      getDeptTypeByRoleCode().then(res => {
-        this.deptTypes = res.data
-      })
-    },
-    // 获取教育学制
-    getEnducationalSystem(){
-         get('sys_educational').then(res=>{
-        this.educationalTypes=res.data.data
       })
     }
   }
@@ -193,10 +149,5 @@ export default {
 </script>
 
 <style scoped>
-  ::v-deep .vue-treeselect__control{
-    border-color: lightgreen;
-  }
-  ::v-deep .vue-treeselect:not(.vue-treeselect--disabled):not(.vue-treeselect--focused) .vue-treeselect__control:hover{
-    border-color: lightgreen;
-  }
+
 </style>

@@ -1,7 +1,7 @@
 export default {
   data () {
     return {
-      tableHeight: document.documentElement.clientHeight * 0.6
+      tableHeight: document.documentElement.clientHeight * 0.68
     }
   },
   mounted () {

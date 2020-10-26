@@ -1,17 +1,15 @@
 import { constantRouterMap } from '@/router/routers'
 import Layout from '@/views/layout/Layout'
-import LayoutArchs from '@/views/layoutarchs/Layout'
+
 const permission = {
   state: {
     routers: constantRouterMap,
-    archrouters:[],
     addRouters: []
   },
   mutations: {
     SET_ROUTERS: (state, routers) => {
       state.addRouters = routers
-      state.routers = constantRouterMap.concat(routers).filter(r=>r.component!=LayoutArchs)
-      state.archrouters= constantRouterMap.concat(routers).filter(r=>r.component==LayoutArchs)
+      state.routers = constantRouterMap.concat(routers)
     }
   },
   actions: {
@@ -29,10 +27,7 @@ export const filterAsyncRouter = (routers) => { // 遍历后台传来的路由�
     if (router.component) {
       if (router.component === 'Layout') { // Layout组件特殊处理
         router.component = Layout
-      } else if (router.component === 'LayoutArchs') {
-        router.component = LayoutArchs
-      }
-      else {
+      } else {
         const component = router.component
         router.component = loadView(component)
       }

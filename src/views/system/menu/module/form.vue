@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :visible.sync="dialog" v-if="dialog" :close-on-click-modal="false" :title="titleMap[operate]" append-to-body width="600px" :destroy-on-close="true" :show-close="false" @close="cancel">
+  <el-dialog :visible.sync="dialog" v-if="dialog" :title="titleMap[operate]" append-to-body width="600px" :destroy-on-close="true" :show-close="false" @close="cancel">
     <el-form ref="form" :model="form" :rules="rules" size="mini" label-width="80px" inline>
       <el-form-item label="菜单名称" prop="menuName">
         <el-input v-model="form.menuName" placeholder="菜单名称" :disabled="operate==='view'" class="form-column-one"/>
@@ -41,21 +41,13 @@
       <el-form-item label="权限标识" v-if="form.menuType !=='M'">
         <el-input v-model="form.permission" placeholder="权限标识" class="form-column-one" :disabled="operate==='view'"/>
       </el-form-item>
-      <el-form-item label="菜单状态" style="width: 260px;" v-if="form.menuType !=='F'">
+      <el-form-item label="菜单状态" v-if="form.menuType !=='F'">
         <el-radio v-model="form.visible" label="0" :disabled="operate==='view'">显示</el-radio>
         <el-radio v-model="form.visible" label="1" :disabled="operate==='view'">隐藏</el-radio>
       </el-form-item>
       <el-form-item label="是否缓存" v-if="form.menuType !=='F'">
         <el-radio v-model="form.keepAlive" label="true" :disabled="operate==='view'">是</el-radio>
         <el-radio v-model="form.keepAlive" label="false" :disabled="operate==='view'">否</el-radio>
-      </el-form-item>
-       <el-form-item label="是否只对超级管理员可见" label-width="150px">
-        <el-radio v-model="form.hide" label="1" :disabled="operate==='view'">是</el-radio>
-        <el-radio v-model="form.hide" label="0" :disabled="operate==='view'">否</el-radio>
-      </el-form-item>
-       <el-form-item label="是否是档案管理" label-width="150px">
-        <el-radio v-model="form.isArch" label="1" :disabled="operate==='view'">是</el-radio>
-        <el-radio v-model="form.isArch" label="0" :disabled="operate==='view'">否</el-radio>
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -90,8 +82,6 @@ export default {
       form: {
         menuId: undefined,
         menuName: undefined,
-        hide:"0",
-        isArch:"0",
         sort: 999,
         parentId: 0,
         path: undefined,
@@ -132,10 +122,10 @@ export default {
       this.resetForm()
     },
     doSubmit () {
-      // if (this.form.menuType !== 'F' && !this.form.icon) {
-      //   this.$alert('图标必须选择', '提示', { type: 'warning' })
-      //   return false
-      // }
+      if (this.form.menuType !== 'F' && !this.form.icon) {
+        this.$alert('图标必须选择', '提示', { type: 'warning' })
+        return false
+      }
       if (this.form.menuType === 'M' && !this.form.path) {
         this.$alert('链接地址必须填写', '提示', { type: 'warning' })
         return false
@@ -168,6 +158,7 @@ export default {
         this.$parent.handleQuery()
       }).catch(err => {
         this.loading = false
+        console.log(err.response)
       })
     },
     doEdit () {
@@ -183,6 +174,7 @@ export default {
         this.loading = false
       }).catch(err => {
         this.loading = false
+        console.log(err.response)
       })
     },
     resetForm () {
@@ -190,8 +182,6 @@ export default {
       this.form = {
         menuId: undefined,
         menuName: undefined,
-        hide:"0",
-        isArch:"0",
         sort: 999,
         parentId: 0,
         path: undefined,

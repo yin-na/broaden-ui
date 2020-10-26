@@ -8,13 +8,6 @@
       <div class="contain-tit">
         <span>用户管理</span>
       </div>
-      <el-col :xs="7" :sm="6" :md="4" :lg="4" :xl="4">
-        <div class="head-container">
-          <el-input v-model.trim="deptName" clearable placeholder="输入部门名称搜索" prefix-icon="el-icon-search" style="width: 100%;" class="filter-item" @input="getDeptDatas" />
-        </div>
-        <el-tree :data="depts" :props="defaultProps" :expand-on-click-node="false" default-expand-all @node-click="handleNodeClick" />
-      </el-col>
-      <el-col :xs="17" :sm="18" :md="20" :lg="20" :xl="20">
         <div class="head-container">
           <el-input v-model.trim="params.username" placeholder="用户姓名" style="width: 150px;margin-right:10px" clearable class="filter-item" @keyup.enter.native="handleQuery" />
           <el-input v-model.trim="params.loginName" placeholder="登录名" style="width: 150px;margin-right:10px" clearable class="filter-item" @keyup.enter.native="handleQuery" />
@@ -25,20 +18,19 @@
         </div>
         <!--表格渲染-->
         <el-table v-loading="loading" :data="data" :height="tableHeight"
-                  :header-cell-style="{fontSize:'14px',height:'35px'}"
-                  :row-style="{height:'35px',lineHeight:'35px',fontSize:'14px'}"
-                  size="mini" fit border>
+                  highlight-current-row
+                  size="mini" style="width: 100%;" fit border>
           <el-table-column prop="username" label="用户姓名" align="center" width="150px" show-overflow-tooltip />
-          <el-table-column prop="loginName" label="登录名" width="120px" align="center" show-overflow-tooltip />
+          <!--<el-table-column prop="loginName" label="登录名" width="120px" align="center" show-overflow-tooltip />-->
           <el-table-column prop="mobilePhone" label="电话" align="center" width="150px" show-overflow-tooltip />
           <el-table-column prop="email" label="邮箱" align="center" show-overflow-tooltip />
-          <el-table-column prop="deptName" label="部门" align="center" width="150px" show-overflow-tooltip />
+          <!--<el-table-column prop="deptName" label="部门" align="center" width="150px" show-overflow-tooltip />-->
           <el-table-column label="状态" align="center" width="120px">
             <template slot-scope="scope">
               <el-switch v-model="scope.row.status" active-value="0" inactive-value="1" :disabled="user.loginName==scope.row.loginName" @change="handleStatusChange(scope.row)" />
             </template>
           </el-table-column>
-          <el-table-column prop="crtTime" label="创建日期" align="center" width="200px" show-overflow-tooltip>
+          <el-table-column prop="crtTime" label="注册日期" align="center" width="200px" show-overflow-tooltip>
             <template slot-scope="scope">
               <span>{{ parseTime(scope.row.crtTime) }}</span>
             </template>
@@ -59,7 +51,7 @@
         </el-table>
         <!--分页组件-->
         <el-pagination :total="total" :page-size="10" style="margin-top: 8px;" layout="total, prev, pager, next, sizes" @size-change="sizeChange" @current-change="pageChange" />
-      </el-col>
+
     </el-row>
     <user-form ref="userForm" :operate="operate" :dicts="statusOptions" />
   </div>

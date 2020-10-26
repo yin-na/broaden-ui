@@ -35,17 +35,9 @@ export function edit (data) {
     data
   })
 }
-
 export function getById (id) {
   return request({
     url: 'api/core/dictValue/getById/' + id,
-    method: 'get'
-  })
-}
-
-export function getDeptTypeByRoleCode () {
-  return request({
-    url: 'api/core/dictValue/getDeptTypeByRoleCode',
     method: 'get'
   })
 }

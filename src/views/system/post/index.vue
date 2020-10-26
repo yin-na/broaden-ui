@@ -1,12 +1,9 @@
 <template>
   <div class="app-container">
-    <div class="contain-tit">
-      <span>岗位管理</span>
-    </div>
     <div class="head-container">
-      <el-input v-model="params.postName" class="filter-item" clearable  placeholder="岗位名称" style="width:150px;margin-right:8px" @keyup.enter.native="handleQuery"/>
-      <el-input v-model="params.postCode" class="filter-item" clearable  placeholder="岗位编码" style="width:150px;margin-right:8px" @keyup.enter.native="handleQuery"/>
-      <el-select v-model="params.status" class="filter-item" clearable  placeholder="岗位状态" style="width:150px;margin-right:8px" @keyup.enter.native="handleQuery">
+      <el-input v-model="params.postName" class="filter-item" clearable  placeholder="岗位名称" style="width:150px;" @keyup.enter.native="handleQuery"/>
+      <el-input v-model="params.postCode" class="filter-item" clearable  placeholder="岗位编码" style="width:150px;" @keyup.enter.native="handleQuery"/>
+      <el-select v-model="params.status" class="filter-item" clearable  placeholder="岗位状态" style="width:150px;" @keyup.enter.native="handleQuery">
         <el-option v-for="item in statusOptions" :key="item.id" :value="item.value" :label="item.label"/>
       </el-select>
       <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
@@ -14,10 +11,7 @@
       <el-button type="button" size="mini" icon="el-icon-refresh" @click="handleReset">重置</el-button>
     </div>
     <!--表格渲染-->
-    <el-table v-loading="loading" :data="data" size="mini"
-              :header-cell-style="{fontSize:'14px',height:'35px',lineHeight:'35px',}"
-              :row-style="{height:'35px',lineHeight:'35px',fontSize:'14px'}"
-              :height="tableHeight" style="width: 100%;" border>
+    <el-table v-loading="loading" :data="data" size="mini" :height="tableHeight" style="width: 100%;" border>
       <el-table-column prop="postCode" label="岗位编码" align="center">
         <template slot-scope="scope">
           <router-link :to="'/post/postForm'" class="link-type">
@@ -140,6 +134,7 @@ export default {
           })
         }).catch(err => {
           this.delLoading = false
+          console.log(err.response.data.message)
         })
       }).catch(() => {
         this.$notify({
@@ -154,12 +149,5 @@ export default {
 </script>
 
 <style scoped>
-  .contain-tit{
-    line-height: 59px;
-    height: 59px;
-    color: #333;
-    font-size: 18px;
-    border-bottom: 2px solid #D5E1FF;
-    font-weight: bold;
-  }
+
 </style>

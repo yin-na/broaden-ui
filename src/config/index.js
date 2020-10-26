@@ -2,25 +2,21 @@
  * @description 系统全局配置
  */
 export default {
-  webName: '美商拓客',
+  webName: '美商拓客后台管理',
   /**
    * 是否显示设置的悬浮按钮
    */
   settingBtn: false,
   // 打包时无需配置
   baseUrl: {
-    dev: 'http://127.0.0.1:9525',// 开发
+    // dev: 'http://192.168.10.113:8000/', // 测试或本地调试 ip:port
+    dev: 'http://127.0.0.1:9525/'
   },
-
-  /**
-   *
-   *  websocketApi
-   */
-  websocketApi: 'ws://58.56.25.18:955/websocket/',
   /**
    * @description 是否只保持一个子菜单的展开
    */
   uniqueOpened: true,
+  autoOpenBrowser: true,
   /**
    * @description token key
    */
@@ -53,4 +49,5 @@ export default {
    * @description 是否显示logo
    */
   sidebarLogo: true
+
 }

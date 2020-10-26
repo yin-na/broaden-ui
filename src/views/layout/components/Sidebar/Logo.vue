@@ -4,15 +4,14 @@
     <svg-icon v-if="isCollapse" icon-class="run" />
     <!--正常状态下显示的，可以使用本地的logoImg-->
     <div class="logo-con">
-      <img :src="maintain.logo" style="width:160px;height:45px">
+      <img :src="logoImg" style="width:50%;height:100%">
     </div>
   </el-menu-item>
 </template>
 
 <script>
-import logoImg from '@/assets/management/public/logo.png'
+import logoImg from '@/assets/logo/logo.png'
 import { mapState } from 'vuex'
-import { mapGetters } from 'vuex'
 export default {
   name: 'Logo',
   props: {
@@ -29,8 +28,7 @@ export default {
   computed: {
     ...mapState({
       sidebarLogo: state => state.settings.sidebarLogo
-    }),
-    ...mapGetters(['maintain'])
+    })
   }
 }
 </script>

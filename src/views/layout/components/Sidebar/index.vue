@@ -6,11 +6,11 @@
       :collapse="isCollapse"
       :unique-opened="$store.state.settings.uniqueOpened"
       mode="vertical"
-      background-color="#182b5c"
-      text-color="#fff"
-      active-text-color="#2FB7FD"
+      background-color="#304156"
+      text-color="#bfcbd9"
+      active-text-color="#409EFF"
     >
-      <Logo :is-collapse="isCollapse" style="height: 120px"/>
+      <Logo :is-collapse="isCollapse"/>
       <sidebar-item v-for="route in permission_routers" :key="route.path" :item="route" :base-path="route.path"/>
     </el-menu>
   </el-scrollbar>

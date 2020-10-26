@@ -155,7 +155,7 @@ export default {
         '        #allow-credentials: true\n' +
         '        #max-age: 1800\n' +
         '    mail:\n' +
-        '        form: product@localhost\n' +
+        '        from: product@localhost\n' +
         '    swagger:\n' +
         '        default-include-pattern: /api/.*\n' +
         '        title: product API\n' +

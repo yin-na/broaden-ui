@@ -5,27 +5,23 @@ import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import {
   getToken
-} from '@/utils/auth' // getToken form cookie
+} from '@/utils/auth' // getToken from cookie
 import {
   buildMenus
 } from '@/api/base/menu'
 import {
   filterAsyncRouter
 } from '@/store/modules/permission'
-import { cloudRoutes } from './cloudrouter'
 
 NProgress.configure({
   showSpinner: false
 }) // NProgress Configuration
 
-// 登陆白名单
-const whiteList = ['/login/Service', '/login/product', '/login/PsyProgramme', '/login/contactUs', '/login'] // no redirect whitelist
-// 首页路由白名单
-// const whiteList = list.concat(cloudRoutes.children.map(item => item.path))
+const whiteList = ['/login'] // no redirect whitelist
 
 router.beforeEach((to, from, next) => {
-  store.dispatch('setStatemaintain')
   const flag = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
+
   if (to.meta.title) {
     if (flag) {
       document.title = to.meta.title
@@ -47,6 +43,7 @@ router.beforeEach((to, from, next) => {
           // 动态路由，拉取菜单
           loadMenus(next, to)
         }).catch((err) => {
+          console.log(err)
           store.dispatch('LogOut').then(() => {
             location.reload() // 为了重新实例化vue-router对象 避免bug
           })
@@ -81,7 +78,6 @@ export const loadMenus = (next, to) => {
     })
     store.dispatch('GenerateRoutes', asyncRouter).then(() => { // 存储路由
       router.addRoutes(asyncRouter) // 动态添加可访问路由表
-      // console.log(asyncRouter,'后台路由')
       next({
         ...to,
         replace: true
@@ -89,6 +85,7 @@ export const loadMenus = (next, to) => {
     })
   })
 }
+
 router.afterEach(() => {
   NProgress.done() // finish progress bar
 })

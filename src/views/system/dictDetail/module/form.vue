@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :append-to-body="true" :visible.sync="dialog" :close-on-click-modal="false" :title="titleMap[operate]" width="500px" @close="cancel">
+  <el-dialog :append-to-body="true" :visible.sync="dialog" :title="titleMap[operate]" width="500px" @close="cancel">
     <el-form ref="form" :model="form" :rules="rules" size="small" label-width="80px">
       <el-form-item label="字典键值" prop="value">
         <el-input v-model="form.value" :disabled="operate==='view'" placeholder="请勿输入汉字" style="width: 370px;"/>
@@ -32,17 +32,6 @@ export default {
     }
   },
   data () {
-    var loginNameValidator=(rule, value, callback)=>{
-      //  　　var reg = new RegExp("[\\u4E00-\\u9FFF]+","g");
-      //     var reg2 = new RegExp("[《》~#^$@%&!·?%？！。，<>,()（）‘、'\";；{}￥ =+-./*：:]", 'g');
-            var reg=new RegExp("^[a-zA-Z0-9_]{1,}$","g")
-
-       if(!reg.test(value)){
-            return callback(new Error("只能输入数字、字母、下划线"))
-        }else{
-          return  callback()
-        }
-      };
     return {
       loading: false,
       dialog: false,
@@ -59,13 +48,7 @@ export default {
         ],
         value: [{
           required: true, message: '请输入字典键值', trigger: 'blur'
-        },
-        {
-          validator: loginNameValidator,
-          message: '只能输入数字、字母、下划线',
-          trigger: 'blur'
-        }
-        ],
+        }],
         sort: [
           { required: true, message: '请输入序号', trigger: 'blur', type: 'number' }
         ]
@@ -83,7 +66,7 @@ export default {
     },
     handleInitData (id) {
       getById(id).then(res => {
-        this.form = res.data
+        this.form = res
       })
     },
     doSubmit () {
@@ -97,7 +80,6 @@ export default {
       })
     },
     doAdd () {
-      this.form.dictCode=this.dictCode
       add(this.form).then(res => {
         this.resetForm()
         this.$notify({
@@ -109,6 +91,7 @@ export default {
         this.$parent.init()
       }).catch(err => {
         this.loading = false
+        console.log(err.response.data.message)
       })
     },
     doEdit () {
@@ -123,6 +106,7 @@ export default {
         this.$parent.init()
       }).catch(err => {
         this.loading = false
+        console.log(err.response.data.message)
       })
     },
     resetForm () {

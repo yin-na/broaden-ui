@@ -48,6 +48,6 @@ export default {
   /**
    * @description 是否显示logo
    */
-  sidebarLogo: true
+  sidebarLogo: false
 
 }

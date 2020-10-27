@@ -40,10 +40,10 @@
               <el-button slot="reference" type="text" size="mini" @click="handleView(scope.row.userId)">
                 <i class="el-icon-view" title="查看" />
               </el-button>
-              <el-button v-if="user.deptId!=scope.row.deptId" slot="reference" type="text" size="mini" v-permission="['system:user:edit']" @click="handleUpdate(scope.row.userId)">
+              <el-button v-if="scope.row.userId!=='1'&&user.userId!=scope.row.userId" slot="reference" type="text" size="mini" v-permission="['system:user:edit']" @click="handleUpdate(scope.row.userId)">
                 <i class="el-icon-edit" style="color:green" title="编辑" />
               </el-button>
-              <el-button  v-if="user.deptId!=scope.row.deptId" slot="reference" class="button-icon" type="text" v-permission="['system:user:remove']" size="mini" @click="handleDelete(scope.row.userId)">
+              <el-button  v-if="scope.row.userId!=='1'&&user.userId!=scope.row.userId" slot="reference" class="button-icon" type="text" v-permission="['system:user:remove']" size="mini" @click="handleDelete(scope.row.userId)">
                 <i class="el-icon-delete" style="color:red" title="删除" />
               </el-button>
             </template>

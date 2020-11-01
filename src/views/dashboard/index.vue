@@ -1,6 +1,8 @@
 <template>
   <div class="dashboard-container">
     <component :is="currentRole"/>
+    <div class="appShow" >
+    </div>
   </div>
 </template>
 
@@ -29,3 +31,15 @@ export default {
   }
 }
 </script>
+<style>
+  .appShow{
+    width: 100%;
+    height: 100%;
+     margin: 0;
+    padding: 0;
+    position: absolute;
+    background-image: url("../../assets/img/back.png") ;
+    background-repeat:no-repeat;
+    background-size: 100% 100%;
+  }
+</style>

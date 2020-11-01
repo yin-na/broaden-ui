@@ -1,17 +1,20 @@
 <template>
   <div>
-    <div v-if="dictCode === ''">
+    <div v-if="dictCode === ''" style="margin-top: 70px">
       <div class="my-code">点击字典查看详情</div>
     </div>
     <div v-else>
       <div class="head-container">
-        <el-input v-model="params.label" class="filter-item" style="width: 150px;"  placeholder="字典编码" @keyup.enter.native="handleQuery"/>
+        <el-input v-model="params.label" class="filter-item" style="width: 150px;"  placeholder="字典标签" @keyup.enter.native="handleQuery"/>
         <el-button size="mini" type="primary" icon="el-icon-search" @click="handleQuery">搜索</el-button>
         <el-button v-permission="['system:dict:add']" size="mini"
           type="success" icon="el-icon-plus" @click="handleCreate">新增</el-button>
       </div>
       <!--表格渲染-->
-      <el-table v-loading="loading" :data="data" :height="tableHeight" size="mini" style="width: 100%;" border>
+      <el-table v-loading="loading" :data="data" :height="tableHeight"
+                :header-cell-style="{fontSize:'14px',height:'35px',lineHeight:'35px',}"
+                :row-style="{height:'35px',lineHeight:'35px',fontSize:'14px'}"
+                size="mini" style="width: 100%;" border>
         <el-table-column label="所属字典" align="center" show-overflow-tooltip>
           {{ dictCode }}
         </el-table-column>
@@ -33,7 +36,8 @@
         </el-table-column>
       </el-table>
       <!--分页组件-->
-      <el-pagination :total="total" style="margin-top: 8px;" layout="total, prev, pager, next, sizes"
+      <el-pagination :current-page.sync="currentPage" 
+         :total="total" style="margin-top: 8px;" layout="total, prev, pager, next, sizes"
         @size-change="sizeChange" @current-change="pageChange"/>
         <dict-detail-form ref="dictDetailForm" :operate="operate" :dictCode="dictCode"/>
     </div>
@@ -55,8 +59,16 @@ export default {
       required: true
     }
   },
+  watch: {
+    // 分页bug
+    dictCode(val) {
+      this.page=1
+      this.currentPage = 1
+    }
+  },
   data () {
     return {
+      currentPage:1,
       delLoading: false,
       sup_this: this,
       operate: '',
@@ -108,7 +120,6 @@ export default {
           })
         }).catch(err => {
           this.delLoading = false
-          console.log(err.response.data.message)
         })
       }).catch(() => {
         this.$notify({

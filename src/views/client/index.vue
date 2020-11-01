@@ -133,7 +133,7 @@
                 this.$router.push("/client/clientOption/-1/create");
             },
             handleView(row) {
-                this.$router.push("/client/clientOption/:id/:opt");
+                this.$router.push("/client/clientOption/" + row.id + '/view');
             },
             handleUpdate(row) {
                 this.$router.push("/client/clientOption/" + row.id + '/update');

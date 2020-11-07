@@ -31,7 +31,7 @@
           <el-button slot="reference" type="text"  size="mini" @click="handleView(scope.row.roleId)">
             <i class="el-icon-view" title="查看"/>
           </el-button>
-          <el-button slot="reference" type="text" size="mini" :disabled="scope.row.roleCode==='admin'" v-permission="['system:role:edit']" @click="handleUpdate(scope.row.roleId)">
+          <el-button slot="reference" type="text" size="mini" v-permission="['system:role:edit']" @click="handleUpdate(scope.row.roleId)">
             <i class="el-icon-edit" style="color:green"  title="编辑"/>
           </el-button>
           <el-button slot="reference"  type="text" size="mini" :disabled="scope.row.roleCode==='admin'" v-permission="['system:role:remove']" @click="handleDelete(scope.row.roleId)">

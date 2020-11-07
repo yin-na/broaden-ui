@@ -10,3 +10,17 @@ export function page (data) {
         data
     })
 }
+//  查询单个
+export function getClientById (id) {
+    return request({
+        url: s+'/getClientById/' + id
+    })
+}
+//  查询单个
+export function saveClient (data) {
+    return request({
+        url: s+'/saveClient',
+        method: 'post',
+        data
+    })
+}

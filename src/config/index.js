@@ -10,7 +10,7 @@ export default {
   // 打包时无需配置
   baseUrl: {
     // dev: 'http://192.168.10.113:8000/', // 测试或本地调试 ip:port
-    dev: 'http://127.0.0.1:9525/'
+    dev: 'http://127.0.0.1:9524/'
   },
   /**
    * @description 是否只保持一个子菜单的展开

@@ -46,6 +46,12 @@
                                          label="邮箱"/>
                         <el-table-column show-overflow-tooltip align="center" prop="crtTime"
                                          label="注册时间"/>
+                        <el-table-column show-overflow-tooltip align="center" prop="vip"
+                                         label="状态">
+                            <template slot-scope="scope">
+                                {{scope.row.vip=='0'?'会员':'非会员'}}
+                            </template>
+                        </el-table-column>
                         <el-table-column show-overflow-tooltip align="center" prop="avatar" label="头像">
                             <template slot-scope="scope">
                                 <el-image :src="scope.row.avatar" style="width: 30px;height: 30px; margin-top: 2px">
@@ -133,10 +139,10 @@
                 this.$router.push("/client/clientOption/-1/create");
             },
             handleView(row) {
-                this.$router.push("/client/clientOption/" + row.id + '/view');
+                this.$router.push("/client/clientOption/" + row.userId + '/view');
             },
             handleUpdate(row) {
-                this.$router.push("/client/clientOption/" + row.id + '/update');
+                this.$router.push("/client/clientOption/" + row.userId + '/update');
             },
             handleDelete(id) {
                 this.$confirm('此操作将永久删除, 是否继续?', '提示', {
@@ -170,13 +176,6 @@
                         message: '已取消删除',
                         duration: 2500
                     })
-                })
-            },
-            viewRecord(id) {
-                this.userid = id
-                this.$nextTick(() => {
-                    this.$refs.consultRecord.dialog = true
-                    this.$refs.consultRecord.handleQuery()
                 })
             },
             batchDelete() {

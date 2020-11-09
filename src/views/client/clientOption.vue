@@ -232,6 +232,11 @@
                                             {{scope.row.tine}}个月
                                         </template>
                                     </el-table-column>
+                                    <el-table-column label="付款方式" align="center">
+                                        <template slot-scope="scope">
+                                            {{scope.row.type==0?'支付宝':'微信'}}
+                                        </template>
+                                    </el-table-column>
                                 </el-table>
                                 <!--分页组件-->
                                 <el-pagination :total="param1.total" :current-page="param1.current"
